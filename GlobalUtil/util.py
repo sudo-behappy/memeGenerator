@@ -21,9 +21,7 @@ def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
     y = 0
     for i in images:
         pos = ALIGNMENT_FUNC[alignment](t.size[0], t.size[1], i.size)
-        print(pos)
         t.paste(i, (pos[0], pos[1] + y))
-        t.show()
         y += i.size[1]
     return t
 
