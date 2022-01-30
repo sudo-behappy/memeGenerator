@@ -16,12 +16,14 @@ def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
     # 寻找最大值
     for i in images:
         x = max(x, i.size[0])
-        print(i.size, x)
         y += i.size[1]
-    t = Image.new(mode = 'RGBA', size = (x, y), color = bgColor)
+    t = Image.new(mode = 'RGBA', size = (x, y), color = reverseColor(bgColor))
     y = 0
     for i in images:
-        t.paste(i, ALIGNMENT_FUNC[alignment](t.size[0], t.size[1], i.size, (x, y)))
+        pos = ALIGNMENT_FUNC[alignment](t.size[0], t.size[1], i.size)
+        print(pos)
+        t.paste(i, (pos[0], pos[1] + y))
+        t.show()
         y += i.size[1]
     return t
 
@@ -53,7 +55,7 @@ def makeTextImage(text, maxWidth, bgColor: tuple = (0, 0, 0, 255), size=12):
         t = []
         for i in textSliced:
             t.append(makeTextImage(i, maxWidth, bgColor, size))
-        ans = mergeImages(t)      
+        ans = mergeImages(t, bgColor)      
     return ans
 
 

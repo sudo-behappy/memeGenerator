@@ -6,7 +6,7 @@ import util as ImageUtil
 # 变量输入
 root = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
 BG = Image.open('../res/ShangHaoEmpty.png')
-fontSize = 30
+fontSize = 12
 
 try:
     ico = Image.open(root + '/icon.png')
