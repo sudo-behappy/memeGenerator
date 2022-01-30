@@ -9,4 +9,4 @@ python ./main.py
 输出在`./out`目录
 
 效果:
-![上号Blender](ShanghaoGenerator\out\shanghao_Blender.png)
+![上号Blender](.\out\shanghao_Blender.png)
