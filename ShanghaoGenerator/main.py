@@ -1,15 +1,14 @@
-from PIL import Image, ImageDraw, ImageFont
-import os, re, sys
+from PIL import Image
+import sys
 sys.path.append('../GlobalUtil')
 # 忽略这里的报错, 因为引入了公用的util文件
 import ImageUtil
 # 变量输入
-root = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
 BG = Image.open('../res/ShangHaoEmpty.png')
-fontSize = 12
+fontSize = 30
 
 try:
-    ico = Image.open(root + '/icon.png')
+    ico = Image.open('./icon.png')
 except FileNotFoundError:
     exit("please put icon under the program directory and name it \"icon.png\".")
 title = input('What do you want for title: ')
@@ -28,6 +27,6 @@ t = ImageUtil.makeTextImage(title, 280, (0, 0, 0, 255), fontSize)
 BG.paste(ico, (500, 50))
 BG.paste(t, ((500 + int(abs((280 - t.size[0])) / 2)), 330))
 
-title = re.sub(r'[\\/.\*$ "\'\[\]\{\}]', '', title)
-BG.save(root + '/out/shanghao_' + title + '.png')
-Image.open(root + '/out/shanghao_' + title + '.png').show()
+title = ImageUtil.normalizeString(title)
+BG.save('./out/shanghao_' + title + '.png')
+Image.open('./out/shanghao_' + title + '.png').show()

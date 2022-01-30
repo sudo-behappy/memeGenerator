@@ -1,6 +1,7 @@
 # 这是个常用工具的集合
 from PIL import Image, ImageDraw, ImageFont
 from AlignmentUtil import ALIGNMENT_FUNC
+import re
 
 
 # 给定颜色元组(RGBA), 返回反相的元组(fin)
@@ -56,7 +57,9 @@ def makeTextImage(text, maxWidth, bgColor: tuple = (0, 0, 0, 255), size=12):
         ans = mergeImages(t, bgColor)      
     return ans
 
-
+# 去除文件中的非法字符
+def normalizeString(str):
+    return re.sub(r'[\\/.\*$ "\'\[\]\{\}]', '', str)
 
 # TODO: 在图片中添加文字, 返回添加完的图片
 def addText(text, position: tuple, size: int, alignment: int):
