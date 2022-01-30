@@ -2,7 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os, re, sys
 sys.path.append('../GlobalUtil')
 # 忽略这里的报错, 因为引入了公用的util文件
-import util as ImageUtil
+import ImageUtil
 # 变量输入
 root = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
 BG = Image.open('../res/ShangHaoEmpty.png')

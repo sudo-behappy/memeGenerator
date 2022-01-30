@@ -1,6 +1,6 @@
 # 这是个常用工具的集合
 from PIL import Image, ImageDraw, ImageFont
-from alignment_util import ALIGNMENT_FUNC
+from AlignmentUtil import ALIGNMENT_FUNC
 
 
 # 给定颜色元组(RGBA), 返回反相的元组(fin)
