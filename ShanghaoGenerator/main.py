@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
 import os
+import re
 # 变量输入
 root = os.path.dirname(os.path.realpath(__file__)).replace('\\', '/')
 BG = Image.open(root + '/res/shanghao_empty.png')
@@ -30,5 +31,7 @@ titleImage.text(xy = (0, 0), text = title, fill = (0, 0, 0), font = font)
 # 拼合图片
 BG.paste(ico, (500, 50))
 BG.paste(t, ((500 + int(abs((280 - t.size[0])) / 2)), 330))
-BG.save(root + './out/shanghao_' + title + '.png')
+
+title = re.sub(r'[\\/.\*$ "\'\[\]\{\}]', '', title)
+BG.save(root + '/out/shanghao_' + title + '.png')
 Image.open(root + '/out/shanghao_' + title + '.png').show()
