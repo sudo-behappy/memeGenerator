@@ -61,10 +61,36 @@ def makeTextImage(text, maxWidth, bgColor: tuple = (0, 0, 0, 255), size=12):
 def normalizeString(str):
     return re.sub(r'[\\/.\*$ "\'\[\]\{\}]', '', str)
 
+# 图片背景颜色切换, 返回操作完的图片(仅应用于纯色或跨度较小的背景)(支持RGBA, A要么0要么255)
+def removeBackgroundColor(t: Image, bgColor: tuple, replacementColor: tuple, bgThreshold = [0, 0, 0, 0]):
+    image = t
+    
+    for i in range(image.size[0]):
+        for j in range(image.size[1]):
+            # 设置alpha通道
+            temp = image.getpixel((i, j))
+            image.putpixel((i, j), (temp[0], temp[1], temp[2], 255)) if temp[3] else None
+            # 判断是否在threshold内
+            flag = True
+            for k in range(len(image.getpixel((i, j)))):
+                if not image.getpixel((i, j))[k] in range(int(bgColor[k] - bgThreshold[k]), int(bgColor[k] + bgThreshold[k])):
+                    flag = False
+                    break
+            if flag:
+                image.putpixel((i, j), replacementColor)
+    return image
+
+# 将透明, 即alpha为0, 的背景换为你想要的颜色, 默认白色,
+def removeTransparent(t: Image, replacementColor: tuple = (255, 255, 255, 255)):
+    return removeBackgroundColor(t, (0, 0, 0, 0), replacementColor, [255, 255, 255, 0])
+
+
 # TODO: 在图片中添加文字, 返回添加完的图片
 def addText(text, position: tuple, size: int, alignment: int):
     pass
 
 
-
+#----------------------------------------------------------------训练靶场----------------------------------------------------------------
+testImagePath = "D:\helloworld\PYdev\memeGenerator\ShanghaoGenerator\icon.png"
+removeTransparent(Image.open(testImagePath)).show()
 
