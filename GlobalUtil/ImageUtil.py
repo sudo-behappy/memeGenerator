@@ -1,15 +1,10 @@
 # 这是个常用工具的集合
 from PIL import Image, ImageDraw, ImageFont
 from AlignmentUtil import ALIGNMENT_FUNC
+import ColorUtil
 import re
 
 
-# 给定颜色元组(RGBA), 返回反相的元组(fin)
-def reverseColor(color: tuple):
-    t = list(color)
-    for i in range(3):
-        t[i] = 255 - t[i]
-    return tuple(t)
 
 # 给定一个图片的list, 返回拼合好的图片, 默认透明背景, 可指定颜色元组和排布方式(默认顶部居中)(fin)
 def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
@@ -18,7 +13,7 @@ def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
     for i in images:
         x = max(x, i.size[0])
         y += i.size[1]
-    t = Image.new(mode = 'RGBA', size = (x, y), color = reverseColor(bgColor))
+    t = Image.new(mode = 'RGBA', size = (x, y), color = ColorUtil.reverseColor(bgColor))
     y = 0
     for i in images:
         pos = ALIGNMENT_FUNC[alignment](t.size[0], t.size[1], i.size)
@@ -34,7 +29,7 @@ def makeTextImage(text, maxWidth, bgColor: tuple = (0, 0, 0, 255), size=12):
     if font.getsize(text)[0] <= maxWidth:
         ans = Image.new(mode='RGBA',
                         size=font.getsize(text),
-                        color=reverseColor(bgColor))
+                        color=ColorUtil.reverseColor(bgColor))
         t = ImageDraw.Draw(ans)
         t.text(xy=(0, 0), text=text, fill=bgColor, font=font)
     # 文字长度大于maxWidth
@@ -72,10 +67,7 @@ def removeBackgroundColor(t: Image, bgColor: tuple, replacementColor: tuple, bgT
             image.putpixel((i, j), (temp[0], temp[1], temp[2], 255)) if temp[3] else None
             # 判断是否在threshold内
             flag = True
-            for k in range(len(image.getpixel((i, j)))):
-                if not image.getpixel((i, j))[k] in range(int(bgColor[k] - bgThreshold[k]), int(bgColor[k] + bgThreshold[k])):
-                    flag = False
-                    break
+            
             if flag:
                 image.putpixel((i, j), replacementColor)
     return image
