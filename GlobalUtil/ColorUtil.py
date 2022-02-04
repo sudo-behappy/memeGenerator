@@ -8,6 +8,6 @@ def reverseColor(color: tuple):
 # 比对颜色是否一致, 支持threshold
 def compateColor(color1: tuple, color2: tuple, type: str = 'RGBA', threshold: list = [0, 0, 0, 0]):
     for k in range():
-        if not color1[k] in range(int(color2[k] - threshold[k]), int(color2[k] + threshold[k])):
+        if not color1[k] in range(int(color2[k] - threshold[k] - 1), int(color2[k] + threshold[k] + 1)):
             return False
     return True
