@@ -7,7 +7,7 @@ import re
 
 
 # 给定一个图片的list, 返回拼合好的图片, 默认透明背景, 可指定颜色元组和排布方式(默认顶部居中)(fin)
-def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
+def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'l'):
     alignmentModified = {
         "l": "ul",
         "c": "uc",
@@ -67,7 +67,7 @@ def removeBackgroundColor(t: Image, bgColor: tuple, replacementColor: tuple, bgT
     for i in range(image.size[0]):
         for j in range(image.size[1]):
             # 判断是否在threshold内
-            if ColorUtil.compareColor(image.getpixel((i, j)), replacementColor):
+            if ColorUtil.compareColor(image.getpixel((i, j)), bgColor, threshold = bgThreshold):
                 image.putpixel((i, j), replacementColor)
     return image
 
