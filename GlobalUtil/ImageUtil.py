@@ -8,6 +8,11 @@ import re
 
 # 给定一个图片的list, 返回拼合好的图片, 默认透明背景, 可指定颜色元组和排布方式(默认顶部居中)(fin)
 def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
+    alignmentModified = {
+        "l": "ul",
+        "c": "uc",
+        "r": "ur"
+    }
     x, y = 0, 0
     # 寻找最大值
     for i in images:
@@ -16,7 +21,7 @@ def mergeImages(images: list, bgColor = (255, 255, 255, 0), alignment = 'uc'):
     t = Image.new(mode = 'RGBA', size = (x, y), color = ColorUtil.reverseColor(bgColor))
     y = 0
     for i in images:
-        pos = ALIGNMENT_FUNC[alignment](t.size[0], t.size[1], i.size)
+        pos = ALIGNMENT_FUNC[alignmentModified[alignment]](t.size[0], t.size[1], i.size)
         t.paste(i, (pos[0], pos[1] + y))
         y += i.size[1]
     return t
@@ -59,16 +64,10 @@ def normalizeString(str):
 # 图片背景颜色切换, 返回操作完的图片(仅应用于纯色或跨度较小的背景)(支持RGBA, A要么0要么255)
 def removeBackgroundColor(t: Image, bgColor: tuple, replacementColor: tuple, bgThreshold = [0, 0, 0, 0]):
     image = t
-    
     for i in range(image.size[0]):
         for j in range(image.size[1]):
-            # 设置alpha通道
-            temp = image.getpixel((i, j))
-            image.putpixel((i, j), (temp[0], temp[1], temp[2], 255)) if temp[3] else None
             # 判断是否在threshold内
-            flag = True
-            
-            if flag:
+            if ColorUtil.compareColor(image.getpixel((i, j)), replacementColor):
                 image.putpixel((i, j), replacementColor)
     return image
 
@@ -82,7 +81,7 @@ def addText(text, position: tuple, size: int, alignment: int):
     pass
 
 
-#----------------------------------------------------------------训练靶场----------------------------------------------------------------
+#-----------------------------------------------------------------训练靶场-----------------------------------------------------------------
 testImagePath = "D:\helloworld\PYdev\memeGenerator\ShanghaoGenerator\icon.png"
 removeTransparent(Image.open(testImagePath)).show()
 
