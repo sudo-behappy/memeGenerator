@@ -63,7 +63,7 @@ def normalizeString(str):
 
 # 图片背景颜色切换, 返回操作完的图片(仅应用于纯色或跨度较小的背景)(支持RGBA, A要么0要么255)
 def removeBackgroundColor(t: Image, bgColor: tuple, replacementColor: tuple, bgThreshold = [0, 0, 0, 0]):
-    image = t
+    image = t.convert('RGBA')
     for i in range(image.size[0]):
         for j in range(image.size[1]):
             # 判断是否在threshold内
@@ -82,6 +82,6 @@ def addText(text, position: tuple, size: int, alignment: int):
 
 
 #-----------------------------------------------------------------训练靶场-----------------------------------------------------------------
-testImagePath = "D:\helloworld\PYdev\memeGenerator\ShanghaoGenerator\icon.png"
-removeTransparent(Image.open(testImagePath)).show()
+# testImagePath = "D:\helloworld\PYdev\memeGenerator\ShanghaoGenerator\icon.png"
+# removeTransparent(Image.open(testImagePath)).show()
 

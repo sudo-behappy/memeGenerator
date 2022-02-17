@@ -14,12 +14,9 @@ except FileNotFoundError:
 title = input('What do you want for title: ')
 
 # 将传入的icon变更为280*280
-ico = ico.resize((280, 280))
+ico = ico.resize((280, 280), resample=Image.BICUBIC, box = (0, 0, ico.size[0], ico.size[1]))
 # icon去除透明背景
-for i in range(280):
-    for j in range(280):
-        if not ico.getpixel((i, j))[3]:
-            ico.putpixel((i, j), value = (255, 255, 255))
+ico = ImageUtil.removeTransparent(ico)
 
 # title生成图片
 t = ImageUtil.makeTextImage(title, 280, (0, 0, 0, 255), fontSize)
