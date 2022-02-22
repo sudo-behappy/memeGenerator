@@ -5,7 +5,7 @@ sys.path.append('../GlobalUtil')
 import ImageUtil
 # 变量输入
 BG = Image.open('../res/ShangHaoEmpty.png')
-fontSize = 30
+fontSize = 50
 
 try:
     ico = Image.open('./icon.png')

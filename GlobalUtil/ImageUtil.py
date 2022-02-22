@@ -82,6 +82,6 @@ def addText(text, position: tuple, size: int, alignment: int):
 
 
 #-----------------------------------------------------------------训练靶场-----------------------------------------------------------------
-# testImagePath = "D:\helloworld\PYdev\memeGenerator\ShanghaoGenerator\icon.png"
-# removeTransparent(Image.open(testImagePath)).show()
+# testImagePath = "E:\\temp\O%RWTHOTULE1LH{@[MC_Q}B.png"
+# removeBackgroundColor(Image.open(testImagePath), (255, 255, 255, 255), (255, 255, 255, 0)).save('./test.png')
 

@@ -71,3 +71,4 @@ ALIGNMENT_FUNC[alignment_method](maxWidth, maxHeight, size)
 颜色处理相关的都放在这里
 ### 方法
 - 施工中
+
