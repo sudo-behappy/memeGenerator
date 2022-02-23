@@ -4,14 +4,17 @@ sys.path.append('../GlobalUtil')
 # 忽略这里的报错, 因为引入了公用的util文件
 import ImageUtil
 # 变量输入
+
 BG = Image.open('../res/ShangHaoEmpty.png')
+
 fontSize = 50
 
+
 try:
-    ico = Image.open('./icon.png')
+    BG = Image.open(input('icon路径:'))
 except FileNotFoundError:
-    exit("please put icon under the program directory and name it \"icon.png\".")
-title = input('What do you want for title: ')
+    BG = Image.open('./icon.png')
+title = input('图片标题: ')
 
 # 将传入的icon变更为280*280
 ico = ico.resize((280, 280), resample=Image.BICUBIC, box = (0, 0, ico.size[0], ico.size[1]))
