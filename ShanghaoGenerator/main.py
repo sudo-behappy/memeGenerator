@@ -7,13 +7,13 @@ import ImageUtil
 
 BG = Image.open('../res/ShangHaoEmpty.png')
 
-fontSize = 50
+fontSize = 30
 
 
 try:
-    BG = Image.open(input('icon路径:'))
+    ico = Image.open(input('icon路径:'))
 except FileNotFoundError:
-    BG = Image.open('./icon.png')
+    ico = Image.open('./icon.png')
 title = input('图片标题: ')
 
 # 将传入的icon变更为280*280
