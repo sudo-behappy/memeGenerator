@@ -3,7 +3,7 @@ ShanghaoGenerator/icon.png
 __pycache__
 *.py[cod]
 *$py.class
-
+test/
 # Distribution / packaging 
 .Python build/ 
 develop-eggs/ 

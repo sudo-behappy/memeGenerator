@@ -12,7 +12,7 @@
 - ~~去除透明底板~~
 - 对于icon主要部分只占一点点的图片的resize
 - 用新的util重写方法
-    - 图片添加文字
+    - ~~图片添加文字~~
     - ~~去除透明背景~~
     - 拼合图片
     - ~~文字直接生成图片~~
@@ -69,6 +69,7 @@ ALIGNMENT_FUNC[alignment_method](maxWidth, maxHeight, size)
 
 ## 颜色工具箱 [ColorUtil.py](GlobalUtil\ColorUtil.py)
 颜色处理相关的都放在这里
+
 ### 方法
 - 施工中
 
