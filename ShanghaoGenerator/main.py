@@ -21,7 +21,7 @@ ico = ImageUtil.removeTransparent(ico)
 # title生成图片
 try:
     t = ImageUtil.makeTextImage(title, 280, (0, 0, 0, 255), fontSize)
-except Exception("The max width is too small"):
+except Exception:
     exit("the title is too long")
 # 拼合图片(准备利用util的工具重写)
 BG.paste(ico, (500, 50))
