@@ -10,24 +10,24 @@ def y_center(maxHeight, size):
     return int(abs(maxHeight - size) / 2)
 def y_bottom(maxHeight, size):
     return maxHeight - size
-def upper_left(maxWidth, maxHeight, size):
-    return (x_left(maxWidth, size[0]), y_top(maxHeight, size[1]))
-def center_left(maxWidth, maxHeight, size):
-    return (x_left(maxWidth, size[0]), y_center(maxHeight, size[1]))
-def lower_left(maxWidth, maxHeight, size):
-    return (x_left(maxWidth, size[0]), y_bottom(maxHeight, size[1]))
-def upper_center(maxWidth, maxHeight, size):
-    return (x_center(maxWidth, size[0]), y_top(maxHeight, size[1]))
-def center_center(maxWidth, maxHeight, size):
-    return (x_center(maxWidth, size[0]), y_center(maxHeight, size[1]))
-def lower_center(maxWidth, maxHeight, size):
-    return (x_center(maxWidth, size[0]), y_bottom(maxHeight, size[1]))
-def upper_right(maxWidth, maxHeight, size):
-    return (x_right(maxWidth, size[0]), y_top(maxHeight, size[1]))
-def center_right(maxWidth, maxHeight, size):
-    return (x_right(maxWidth, size[0]), y_center(maxHeight, size[1]))
-def lower_right(maxWidth, maxHeight, size):
-    return (x_right(maxWidth, size[0]), y_bottom(maxHeight, size[1]))
+def upper_left(maxWidth, maxHeight, size, box):
+    return (box[0] + x_left(maxWidth, size[0]), box[1] + y_top(maxHeight, size[1]))
+def center_left(maxWidth, maxHeight, size, box):
+    return (box[0] + x_left(maxWidth, size[0]), box[1] + y_center(maxHeight, size[1]))
+def lower_left(maxWidth, maxHeight, size, box):
+    return (box[0] + x_left(maxWidth, size[0]), box[1] + y_bottom(maxHeight, size[1]))
+def upper_center(maxWidth, maxHeight, size, box):
+    return (box[0] + x_center(maxWidth, size[0]), box[1] + y_top(maxHeight, size[1]))
+def center_center(maxWidth, maxHeight, size, box):
+    return (box[0] + x_center(maxWidth, size[0]), box[1] + y_center(maxHeight, size[1]))
+def lower_center(maxWidth, maxHeight, size, box):
+    return (box[0] + x_center(maxWidth, size[0]), box[1] + y_bottom(maxHeight, size[1]))
+def upper_right(maxWidth, maxHeight, size, box):
+    return (box[0] + x_right(maxWidth, size[0]), box[1] + y_top(maxHeight, size[1]))
+def center_right(maxWidth, maxHeight, size, box):
+    return (box[0] + x_right(maxWidth, size[0]), box[1] + y_center(maxHeight, size[1]))
+def lower_right(maxWidth, maxHeight, size, box):
+    return (box[0] + x_right(maxWidth, size[0]), box[1] + y_bottom(maxHeight, size[1]))
 
 ALIGNMENT_FUNC = {
     "ul": upper_left,
@@ -40,3 +40,4 @@ ALIGNMENT_FUNC = {
     "lc": lower_center,
     "lr": lower_right
 }
+

@@ -1,12 +1,15 @@
+
 基于pillow开发
 
 将你想要上的号的icon放在根目录下, 命名为icon.png
 
 命令行运行
+
 ```
 cd ./ShanghaoGenerator/
 python ./main.py
 ```
+
 输出在`./ShanghaoGenerator/out`目录
 
 效果:
